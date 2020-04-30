@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuarioTable extends Migration
+class BaseTasks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateUsuarioTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('base_tasks', function (Blueprint $table) {
+            //
+            $table->increments('id');
+            $table->integer('task_id');
+            
         });
     }
 
@@ -26,6 +28,9 @@ class CreateUsuarioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::table('base_tasks', function (Blueprint $table) {
+            //
+            Schema::drop('base_tasks');
+        });
     }
 }
